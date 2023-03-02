@@ -2,31 +2,21 @@
 {
     class Program
     {
-
-
         // Create the playfield
         static char[,] playField =
         {
-
                 {'1','2','3'}, // Row 0
                 {'4','5','6'}, // Row 1 
                 {'7','8','9'} // Row 2
         };
-
-
         static int turns = 0;
-
-
         public static void Main(string[] args)
         {
-
             int player = 2; // player 1
             int input = 0;
             bool inputCorrect = true;
-
             do
             {
-
                 if (player == 2)
                 {
                     player = 1;
@@ -37,7 +27,6 @@
                     enterXorO(player, input);
                 }
                 SetField();
-
                 #region
                 //Check winning player
                 char[] playerChars = { 'X', 'O' };
@@ -53,23 +42,18 @@
                        || ((playField[0, 2] == playerChar) && (playField[1, 1] == playerChar) && (playField[2, 0] == playerChar))
                        || ((playField[0, 2] == playerChar) && (playField[1, 2] == playerChar) && (playField[2, 2] == playerChar))
                        || ((playField[0, 2] == playerChar) && (playField[1, 2] == playerChar) && (playField[2, 2] == playerChar))
-
                         )
                     {
                         if(playerChar == 'X'){
-
                             Console.WriteLine("Player 2 has won!");
-
                         } else
                         {
                             Console.WriteLine("Player 1 has won !");
                         }
-
                         Console.WriteLine("Please press any key to reset the game !");
                         Console.ReadKey();
                         // Reset field
-                        ResetField();
-                        
+                        ResetField();   
                         break;
                     }                 
                     else if(turns == 10)
@@ -81,9 +65,7 @@
                         break;
                     }
                 }
-
                 #endregion
-
                 #region
                 // Test if field is already taken
                 do
@@ -92,12 +74,10 @@
                     try
                     {
                         input = Convert.ToInt32(Console.ReadLine());
-
                     }
                     catch
                     {
                         Console.WriteLine("Please enter a number:");
-
                     }
                     if(input == 1 && (playField[0,0] == '1'))
                     {
@@ -139,30 +119,23 @@
                         Console.WriteLine("Incorrect Input ! Please try again");
                         inputCorrect = false;
                     }
-
-
                 } while (!inputCorrect);
                 #endregion
             }
             while (true);
         }
-
         public static void ResetField()
         {
             char[,] playFieldInitial =
 {
-
                 {'1','2','3'}, // Row 0
                 {'4','5','6'}, // Row  
                 {'7','8','9'} // Row 2
         };
-
             playField = playFieldInitial;
             SetField();
             turns = 0;
-
         }
-
         public static void SetField()
         {
             Console.Clear();
@@ -180,9 +153,7 @@
             Console.WriteLine(" {0}     |  {1}     |     {2}", playField[2, 0], playField[2, 1], playField[2, 2]);
             Console.WriteLine("       |        |       ");
             turns++;
-
         }
-
         public static void enterXorO(int player, int input)
         {
             char playerSign = ' ';
@@ -192,8 +163,6 @@
             } else if (player == 2) {
                 playerSign = 'O';
             }
-
-
             switch (input)
             {
                 case 1: playField[0, 0] = playerSign; break;
@@ -206,7 +175,6 @@
                 case 8: playField[2, 1] = playerSign; break;
                 case 9: playField[2, 2] = playerSign; break;
             }
-
         }
     }
 }
